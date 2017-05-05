@@ -9,5 +9,9 @@
       - @recipe.ingredients.each do |ingredient|
         = "#{ingredient.quantity} #{ingredient.name}"
         %br
-      %br  
+      %br
       = link_to "Add meal", new_meal_path, class: "button"
+      = form_for @tag do |f|
+        .form.title
+          = f.label :name
+          = f.text_field :name

@@ -37,6 +37,7 @@ class RecipesController < ApplicationController
 
   def show
     find_recipe
+    @tag = Tag.all
   end
 
   private

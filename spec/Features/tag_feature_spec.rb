@@ -9,7 +9,7 @@ feature 'tags' do
       click_link 'My Recipes'
       click_link 'Omelette'
       expect(page).to have_field('TagName')
-      fill_in 'TagName', with: 'Healthy'
+      fill_in 'name', with: 'Healthy'
       click_button 'Add Tag'
       expect(page).to have_content('Tag Successfully added to recipe')
     end
