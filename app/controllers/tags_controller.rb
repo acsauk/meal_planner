@@ -15,6 +15,7 @@ class TagsController < ApplicationController
   # GET /tags/new
   def new
     @tag = Tag.new
+    @tag.tag_recipes.build
   end
 
   # GET /tags/1/edit
@@ -25,6 +26,7 @@ class TagsController < ApplicationController
   # POST /tags.json
   def create
     @tag = Tag.new(tag_params)
+    # Look into following meals controller here
 
     respond_to do |format|
       if @tag.save
