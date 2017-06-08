@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :find_recipe, only: %i[edit update destroy show]
+
   def index
     @recipe = Recipe.all
   end
@@ -9,7 +11,6 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    find_recipe
   end
 
   def create
@@ -21,7 +22,6 @@ class RecipesController < ApplicationController
   end
 
   def update
-    find_recipe
     if @recipe.update(recipe_params)
       redirect_to recipes_path
     else
@@ -30,13 +30,11 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    find_recipe
     @recipe.destroy
     redirect_to recipes_path
   end
 
   def show
-    find_recipe
   end
 
   private

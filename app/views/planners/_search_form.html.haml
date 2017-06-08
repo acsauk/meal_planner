@@ -1,3 +1,6 @@
-= form_tag(search_planners_path, :method => "get", id: "search-form") do
-  = text_field_tag :search, params[:search], placeholder: "Search Recipes"
-  = submit_tag "Search", :name => nil
+= search_form_for @q do |f|
+  -# Search if the name field contains
+  = f.label :title_or_ingredients_name_cont
+  = f.search_field :title_or_ingredients_name_cont
+
+  = f.submit

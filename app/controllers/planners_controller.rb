@@ -1,9 +1,10 @@
 class PlannersController < ApplicationController
   def index
+    @q = Recipe.ransack(params[:q])
+    @recipes = @q.result(distinct: true)
   end
 
   def search
-    return unless params[:search]
-    @recipes = Recipe.search(params[:search]).order('created_at DESC').uniq
+
   end
 end
