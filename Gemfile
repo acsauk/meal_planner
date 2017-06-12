@@ -48,10 +48,12 @@ gem 'ransack'
 # gem 'capistrano-rails', group: :development
 
 group :test do
-  gem 'rspec-rails'
   gem 'capybara'
-  gem 'shoulda-matchers'
+  gem 'database_cleaner'
   gem 'rspec-collection_matchers'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+
 end
 
 group :development, :test do
