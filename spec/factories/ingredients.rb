@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :ingredient do
-    name 'Chicken'
-    quantity '200g'
+    sequence :name do  |n|
+      "ingredient#{n}"
+    end
+    quantity '100g'
   end
 end
