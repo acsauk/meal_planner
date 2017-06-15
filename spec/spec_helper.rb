@@ -1,6 +1,7 @@
+require 'factory_girl_rails'
+require 'rails_helper'
 require 'helpers/users_helper'
 require 'helpers/meal_helper'
-require 'rails_helper'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

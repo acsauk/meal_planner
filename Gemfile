@@ -7,11 +7,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'haml-rails'
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
 gem "cocoon"
-gem "rails_12factor"
-gem "rspec-cells"
 gem "cells-rails"
 gem "cells-haml"
 
@@ -52,7 +48,6 @@ group :test do
   gem 'database_cleaner'
   gem 'rspec-collection_matchers'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
 end
 
 group :development, :test do
@@ -60,6 +55,7 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
