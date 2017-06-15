@@ -1,45 +1,47 @@
 feature 'Recipes' do
   before(:each) do
     sign_up
-    recipe_with_ingredients = FactoryGirl.build(:recipe_with_ingredients)
+    saved_recipe = FactoryGirl.create(:recipe_with_ingredients)
   end
 
   context 'user signed in' do
     scenario 'adding recipes' do
+      built_recipe = FactoryGirl.build(:recipe_with_ingredients)
       click_link 'Add recipe'
-      fill_in 'Title', with: recipe_with_ingredients.title
-      fill_in 'Instructions', with: recipe_with_ingredients.instructions
-      fill_in('recipe[ingredients_attributes][0][name]', with: recipe_with_ingredients.ingredients.first.name)
-      fill_in('recipe[ingredients_attributes][0][quantity]', with: recipe_with_ingredients.ingredients.first.quantity)
-      fill_in('recipe[ingredients_attributes][1][name]', with: recipe_with_ingredients.ingredients.second.name)
-      fill_in('recipe[ingredients_attributes][1][quantity]', with: recipe_with_ingredients.ingredients.second.quantity)
+      fill_in 'Title', with: built_recipe.title
+      fill_in 'Instructions', with: built_recipe.instructions
+      fill_in('recipe[ingredients_attributes][0][name]', with: built_recipe.ingredients.first.name)
+      fill_in('recipe[ingredients_attributes][0][quantity]', with: built_recipe.ingredients.first.quantity)
+      fill_in('recipe[ingredients_attributes][1][name]', with: built_recipe.ingredients.second.name)
+      fill_in('recipe[ingredients_attributes][1][quantity]', with: built_recipe.ingredients.second.quantity)
       click_button 'Create Recipe'
-      expect(page).to have_content "#{recipe_with_ingredients.title} recipe successfully created"
-      expect(page).to have_link "#{recipe_with_ingredients.title}"
+      expect(page).to have_content "#{built_recipe.title} recipe successfully created"
+      expect(page).to have_link "#{built_recipe.title}"
       expect(current_path).to eq '/recipes'
     end
 
     scenario 'editing a recipe' do
       visit '/recipes'
       click_link 'Edit recipe'
-      fill_in('Title', with: 'Ham Omelette')
-      fill_in('recipe[ingredients_attributes][1][name]', with: 'Ham')
+      fill_in('Title', with: "#{saved_recipe.title} edit")
+      fill_in('recipe[ingredients_attributes][1][name]', with: "#{saved_recipe.ingredients.first.name} edit")
       click_button 'Update Recipe'
-      expect(page).to have_content 'Ham Omelette'
+      expect(page).to have_content "#{saved_recipe.title} edit"
+      click_link saved_recipe.title.to_s
+      expect(page).to have_content "#{saved_recipe.ingredients.first.name} edit"
     end
 
     scenario 'deleting a recipe' do
       visit '/recipes'
       click_link 'Delete recipe'
-      expect(page).not_to have_content('Omelette')
+      expect(page).not_to have_content(saved_recipe.title.to_s)
     end
 
     scenario 'viewing a recipe' do
-      click_link 'My Recipes'
-      click_link 'Omelette'
-      expect(page).to have_content 'Omelette'
-      expect(page).to have_content 'Egg'
-      expect(page).to have_content '2'
+      visit '/recipes'
+      click_link saved_recipe.title.to_s
+      expect(page).to have_content "#{built_recipe.ingredients.first.quantity} #{built_recipe.ingredients.first.name}"
+      expect(page).to have_content "#{built_recipe.ingredients.second.quantity} #{built_recipe.ingredients.second.name}"
     end
   end
 end
