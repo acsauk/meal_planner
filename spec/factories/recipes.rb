@@ -9,6 +9,14 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_ingredients do
+      after(:create) do |recipe|
+        recipe.ingredients << FactoryGirl.build(:ingredient)
+        recipe.ingredients << FactoryGirl.build(:ingredient)
+      end
+    end
+
     factory :recipe_with_ingredient, traits: [:with_ingredient]
+    factory :recipe_with_ingredients, traits: [:with_ingredients]
   end
 end
