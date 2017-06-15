@@ -1,5 +1,4 @@
 require 'helpers/users_helper'
-require 'helpers/recipe_helper'
 require 'helpers/meal_helper'
 require 'rails_helper'
 
