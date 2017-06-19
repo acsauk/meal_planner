@@ -1,36 +1,47 @@
 feature 'Recipes' do
+  let!(:saved_recipe) { FactoryGirl.create(:recipe_with_ingredients) }
+
   before(:each) do
     sign_up
-    add_recipe
+    saved_recipe
   end
 
-  context 'user signed in' do
-    scenario 'adding recipes' do
-      expect(page).to have_content 'Omelette recipe successfully created'
-      expect(current_path).to eq '/recipes'
-    end
+  scenario 'adding recipes' do
+    click_link 'Add recipe'
+    fill_in 'Title', with: "#{saved_recipe.title} 2"
+    fill_in 'Instructions', with: "#{saved_recipe.instructions} 2"
+    fill_in 'recipe[ingredients_attributes][0][name]', with: "#{saved_recipe.ingredients.first.name} 2"
+    fill_in 'recipe[ingredients_attributes][0][quantity]', with: "#{saved_recipe.ingredients.first.quantity} 2"
+    fill_in 'recipe[ingredients_attributes][1][name]', with: "#{saved_recipe.ingredients.second.name} 2"
+    fill_in 'recipe[ingredients_attributes][1][quantity]', with: "#{saved_recipe.ingredients.second.quantity} 2"
+    click_button 'Create Recipe'
+    expect(page).to have_content "#{saved_recipe.title} 2 recipe successfully created"
+    expect(page).to have_link "#{saved_recipe.title} 2"
+    expect(current_path).to eq '/recipes'
+  end
 
-    scenario 'editing a recipe' do
-      visit '/recipes'
-      click_link 'Edit recipe'
-      fill_in('Title', with: 'Ham Omelette')
-      fill_in('recipe[ingredients_attributes][1][name]', with: 'Ham')
-      click_button 'Update Recipe'
-      expect(page).to have_content 'Ham Omelette'
-    end
+  scenario 'editing a recipe' do
+    visit '/recipes'
+    save_and_open_page
+    click_link 'Edit recipe'
+    fill_in('Title', with: "#{saved_recipe.title} edit")
+    fill_in('recipe[ingredients_attributes][1][name]', with: "#{saved_recipe.ingredients.first.name} edit")
+    click_button 'Update Recipe'
+    expect(page).to have_content "#{saved_recipe.title} edit"
+    click_link saved_recipe.title.to_s
+    expect(page).to have_content "#{saved_recipe.ingredients.first.name} edit"
+  end
 
-    scenario 'deleting a recipe' do
-      visit '/recipes'
-      click_link 'Delete recipe'
-      expect(page).not_to have_content('Omelette')
-    end
+  scenario 'deleting a recipe' do
+    visit '/recipes'
+    click_link 'Delete recipe'
+    expect(page).not_to have_content(saved_recipe.title.to_s)
+  end
 
-    scenario 'viewing a recipe' do
-      click_link 'My Recipes'
-      click_link 'Omelette'
-      expect(page).to have_content 'Omelette'
-      expect(page).to have_content 'Egg'
-      expect(page).to have_content '2'
-    end
+  scenario 'viewing a recipe' do
+    visit '/recipes'
+    click_link saved_recipe.title.to_s
+    expect(page).to have_content "#{saved_recipe.ingredients.first.quantity} #{saved_recipe.ingredients.first.name}"
+    expect(page).to have_content "#{saved_recipe.ingredients.second.quantity} #{saved_recipe.ingredients.second.name}"
   end
 end
