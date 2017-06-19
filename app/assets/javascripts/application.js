@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require nested_form_fields
-//= require moment
-//= require fullcalendar
 //= require bootstrap-sprockets
 //= require_tree .
 
