@@ -1,7 +1,7 @@
 feature 'meals' do
   before(:each) do
     sign_up
-    add_recipe
+    
     add_meal
   end
 
