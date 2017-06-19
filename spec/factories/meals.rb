@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :meal do
-    meal_slot 'Evening'
-    day_slot 'Monday'
+    meal_slot 'meal slot text'
+    day_slot 'day slot text'
   end
 end
