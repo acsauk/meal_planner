@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :recipe do
+    association :user
     title 'Chicken Cutlets'
     instructions 'Description text that describes recipe steps goes here'
 

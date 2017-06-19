@@ -55,6 +55,7 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
+  gem 'pry'
   gem 'shoulda-matchers', '~> 3.1'
 end
 
