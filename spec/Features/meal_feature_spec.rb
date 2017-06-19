@@ -30,7 +30,6 @@ feature 'meals' do
       fill_in 'Email', with: meal_with_recipe_and_user.user.email
       fill_in 'Password', with: meal_with_recipe_and_user.user.password
       click_button 'Log in'
-      binding.pry
       expect(page).to have_content meal_with_recipe_and_user.recipes.first.title
       expect(current_path).to eq '/'
     end
