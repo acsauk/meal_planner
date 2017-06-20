@@ -46,6 +46,7 @@ gem 'ransack'
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'rspec-cells'
   gem 'rspec-collection_matchers'
   gem 'rspec-rails'
 end

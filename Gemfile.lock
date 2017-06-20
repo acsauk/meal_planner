@@ -189,6 +189,9 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rspec-cells (0.3.4)
+      cells (>= 4.0.0, < 6.0.0)
+      rspec-rails (~> 3.2)
     rspec-collection_matchers (1.1.3)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.6.0)
@@ -280,6 +283,7 @@ DEPENDENCIES
   pry
   rails (= 4.2.7.1)
   ransack
+  rspec-cells
   rspec-collection_matchers
   rspec-rails
   sass-rails (~> 5.0)
