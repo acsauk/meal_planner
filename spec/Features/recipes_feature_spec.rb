@@ -2,8 +2,11 @@ feature 'Recipes' do
   let!(:saved_recipe) { FactoryGirl.create(:recipe_with_ingredients) }
 
   before(:each) do
-    sign_up
-    saved_recipe
+    visit '/'
+    click_link 'Sign in'
+    fill_in 'Email', with: saved_recipe.user.email
+    fill_in 'Password', with: saved_recipe.user.password
+    click_button 'Log in'
   end
 
   scenario 'adding recipes' do
