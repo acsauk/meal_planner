@@ -1,32 +1,27 @@
 feature 'search' do
+  let!(:saved_recipe) { FactoryGirl.create(:recipe_with_ingredients) }
+
   before(:each) do
-    sign_up
-    add_recipe
-    add_recipe(title: 'Pasta', ingredient1: 'pasta')
     visit '/'
+    click_link 'Sign in'
+    fill_in 'Email', with: saved_recipe.user.email
+    fill_in 'Password', with: saved_recipe.user.password
+    click_button 'Log in'
   end
 
   scenario 'by recipe titles' do
-    fill_in 'search', with: 'Omelette'
+    saved_recipe2 = FactoryGirl.create(:recipe_with_ingredients, title: 'Pasta')
+    fill_in 'q_title_or_ingredients_name_cont', with: saved_recipe.title
     click_button 'Search'
-    expect(page).to have_content('Omelette')
-    expect(page).not_to have_content('Pasta')
+    expect(page).to have_content(saved_recipe.title)
+    expect(page).not_to have_content(saved_recipe2.title)
   end
 
   scenario 'by ingredients' do
-    fill_in 'search', with: 'egg'
+    saved_recipe2 = FactoryGirl.create(:recipe_with_ingredients, title: 'Pasta')
+    fill_in 'q_title_or_ingredients_name_cont', with: saved_recipe.ingredients.first.name
     click_button 'Search'
-    expect(page).to have_content('Omelette')
-    expect(page).not_to have_content('Pasta')
-  end
-
-  context 'when result is clicked' do
-    scenario 'show recipe' do
-      fill_in 'search', with: 'egg'
-      click_button 'Search'
-      click_link 'Omelette'
-      expect(page).to have_content('Omelette')
-      expect(page).to have_content('Eggs')
-    end
+    expect(page).to have_content(saved_recipe.title)
+    expect(page).not_to have_content(saved_recipe2.title)
   end
 end
