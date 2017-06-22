@@ -3,6 +3,7 @@ FactoryGirl.define do
     sequence :name do  |n|
       "ingredient#{n}"
     end
-    quantity '100g'
+    quantity '100'
+    unit 'grams'
   end
 end

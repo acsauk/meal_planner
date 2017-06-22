@@ -15,8 +15,10 @@ feature 'Recipes' do
     fill_in 'Instructions', with: "#{saved_recipe.instructions} 2"
     fill_in 'recipe[ingredients_attributes][0][name]', with: "#{saved_recipe.ingredients.first.name} 2"
     fill_in 'recipe[ingredients_attributes][0][quantity]', with: "#{saved_recipe.ingredients.first.quantity} 2"
+    select 'grams', from: 'recipe[ingredients_attributes][0][unit]'
     fill_in 'recipe[ingredients_attributes][1][name]', with: "#{saved_recipe.ingredients.second.name} 2"
     fill_in 'recipe[ingredients_attributes][1][quantity]', with: "#{saved_recipe.ingredients.second.quantity} 2"
+    select 'grams', from: 'recipe[ingredients_attributes][1][unit]'
     click_button 'Create Recipe'
     expect(page).to have_content "#{saved_recipe.title} 2 recipe successfully created"
     expect(page).to have_link "#{saved_recipe.title} 2"
