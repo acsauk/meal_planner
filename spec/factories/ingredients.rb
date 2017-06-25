@@ -4,13 +4,15 @@ FactoryGirl.define do
       "ingredient#{n}"
     end
 
-    factory :ingredient_with_quantities do
-      transient do
-        quantities_count 1
-      end
+    transient do
+      recipes_count 1
+    end
 
+    factory :ingredient_with_recipes do
       after(:create) do |ingredient, evaluator|
-        create_list(:quantity, evaluator.quantities_count, quantity: ingredient)
+        (0...evaluator.recipes_count).each do
+          ingredient.recipes << FactoryGirl.create(:recipe)
+        end
       end
     end
   end

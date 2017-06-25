@@ -4,20 +4,16 @@ FactoryGirl.define do
     title 'Chicken Cutlets'
     instructions 'Description text that describes recipe steps goes here'
 
-    trait :with_ingredient do
-      after(:create) do |recipe|
-        recipe.ingredients << FactoryGirl.build(:ingredient)
-      end
+    transient do
+      ingredients_count 2
     end
 
-    trait :with_ingredients do
-      after(:create) do |recipe|
-        recipe.ingredients << FactoryGirl.build(:ingredient)
-        recipe.ingredients << FactoryGirl.build(:ingredient)
+    factory :recipe_with_ingredients do
+      after(:create) do |recipe, evaluator|
+        (0...evaluator.ingredients_count).each do
+          recipe.ingredients << FactoryGirl.create(:ingredient)
+        end
       end
     end
-
-    factory :recipe_with_ingredient, traits: [:with_ingredient]
-    factory :recipe_with_ingredients, traits: [:with_ingredients]
   end
 end

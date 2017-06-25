@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :quantity do
-    association :recipe
-    association :ingredient
     sequence :amount
     unit 'grams'
+    association :recipe
+    association :ingredient
   end
 end
