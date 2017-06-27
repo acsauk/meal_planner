@@ -11,7 +11,7 @@ FactoryGirl.define do
     factory :ingredient_with_recipes do
       after(:create) do |ingredient, evaluator|
         (0...evaluator.recipies_count).each do
-          ingredient.recipies << FactoryGirl.create(:recipe)
+          ingredient.recipes << FactoryGirl.create(:recipe)
         end
       end
     end
