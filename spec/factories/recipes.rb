@@ -13,7 +13,7 @@ FactoryGirl.define do
     factory :recipe_with_ingredients do
       after(:create) do |recipe, evaluator|
         (0...evaluator.ingredients_count).each do
-          recipe.quantities << FactoryGirl.create(:quantity, ingredient: FactoryGirl.create(:ingredient))
+          recipe.quantities << FactoryGirl.build(:quantity, ingredient: FactoryGirl.build(:ingredient))
         end
       end
     end
