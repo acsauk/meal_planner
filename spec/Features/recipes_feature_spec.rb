@@ -10,7 +10,9 @@ feature 'Recipes' do
   end
 
   scenario 'adding recipes' do
+    visit '/'
     click_link 'Add recipe'
+    save_and_open_page
     fill_in 'Title', with: "#{saved_recipe.title} 2"
     fill_in 'Instructions', with: "#{saved_recipe.instructions} 2"
     fill_in 'recipe[ingredients_attributes][0][name]', with: "#{saved_recipe.ingredients.first.name} 2"
@@ -27,7 +29,7 @@ feature 'Recipes' do
 
   scenario 'editing a recipe' do
     visit '/recipes'
-    save_and_open_page
+
     click_link 'Edit recipe'
     fill_in('Title', with: "#{saved_recipe.title} edit")
     fill_in('recipe[ingredients_attributes][1][name]', with: "#{saved_recipe.ingredients.first.name} edit")

@@ -8,16 +8,10 @@
         .form.instructions
           = f.label :instructions
           = f.text_area :instructions, rows: "4"
-        = f.nested_fields_for :ingredients do |iform|
-          .form.ingredient
-            = iform.label :ingredient_name
-            = iform.text_field :name
-            = iform.label :ingredient_quantity
-            = iform.text_field :quantity
-            %br
-            = iform.remove_nested_fields_link "remove ingredient"
+        .form.ingredients
+          = f.fields_for :quantities do |quantity|
+            = render 'quantity_fields', f: quantity
+          = link_to_add_association 'add ingredient', f, :quantities, 'data-association-node' => '#recipe-ingredients', 'data-association-insertion-method' => 'append', :wrap_object => Proc.new { |quantity| quantity.build_ingredient; quantity }
         .formcolumn
-          = f.add_nested_fields_link :ingredients, "Add ingredient"
-          %br
           %br
           = f.submit
