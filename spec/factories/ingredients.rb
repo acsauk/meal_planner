@@ -5,16 +5,13 @@ FactoryGirl.define do
     end
 
     transient do
-      quantities_count 1
+      recipies_count 1
     end
 
-    factory :ingredient_with_quantities do
+    factory :ingredient_with_recipes do
       after(:create) do |ingredient, evaluator|
-        properties = { amount: 1, unit: 'gram' }
-
-        (0...evaluator.quantities_count).each do
-          ingredient.quantities << FactoryGirl.create(:quantity, properties)
-          # ingredient.recipes << FactoryGirl.create(:recipe)
+        (0...evaluator.recipies_count).each do
+          ingredient.recipies << FactoryGirl.create(:recipe)
         end
       end
     end
