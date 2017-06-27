@@ -2,7 +2,7 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   belongs_to :meal
 
-  has_many :quantities, dependent: :destroy
+  has_many :quantities, inverse_of: :recipe, dependent: :destroy
   has_many :ingredients, through: :quantities, dependent: :destroy
 
   has_many :meal_recipes, dependent: :destroy
