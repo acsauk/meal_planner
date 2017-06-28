@@ -9,7 +9,7 @@ feature 'Recipes' do
     click_button 'Log in'
   end
 
-  scenario 'adding recipes' do
+  scenario 'adding recipes', js:true do
     visit '/'
     click_link 'Add recipe'
     save_and_open_page
