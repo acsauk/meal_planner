@@ -7,7 +7,7 @@
       %p
       %h3 Ingredients
       - @recipe.ingredients.each do |ingredient|
-        = "#{ingredient.quantity} #{ingredient.name}"
+        = "#{ingredient.quantities.first.amount} #{ingredient.quantities.first.unit} #{ingredient.name}"
         %br
-      %br  
+      %br
       = link_to "Add meal", new_meal_path, class: "button"
