@@ -1,9 +1,13 @@
 feature 'Recipes' do
-  let!(:saved_recipe) { FactoryGirl.create(:recipe_with_ingredients) }
-  let(:user) { saved_recipe.user }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:saved_recipe) { FactoryGirl.create(:recipe_with_ingredients, user: user) }
 
   before(:each) do
     login_as(user, scope: :user)
+    # visit new_user_session_path
+    # fill_in "user_email", with: user.email
+    # fill_in "user_password", with: user.password
+    # click_button 'Log in'
   end
 
   scenario 'adding recipes', js:true do
@@ -12,7 +16,6 @@ feature 'Recipes' do
     fill_in 'Title', with: "#{saved_recipe.title} 2"
     fill_in 'Instructions', with: "#{saved_recipe.instructions} 2"
     click_link 'add ingredient'
-    save_and_open_page
     find('#recipe-ingredients :nth-child(2) .nested_ingredient').set("#{saved_recipe.ingredients.first.name} 2")
     find('#recipe-ingredients :nth-child(2) .nested_amount').set("#{saved_recipe.quantities.first.amount} 2")
     find('#recipe-ingredients :nth-child(2) .nested_unit').set("#{saved_recipe.quantities.first.unit} 2")
