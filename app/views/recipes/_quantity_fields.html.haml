@@ -1,12 +1,12 @@
 .nested-fields
   = f.fields_for :ingredient do |quantity_ingredient|
     = quantity_ingredient.label :name, "Ingredient:"
-    = quantity_ingredient.text_field :name
+    = quantity_ingredient.text_field :name, class: 'nested_ingredient'
 
   = f.label :amount, "Amount:"
-  = f.text_field :amount
+  = f.text_field :amount, class: 'nested_amount'
 
   = f.label :unit, "Unit:"
-  = f.text_field :unit
+  = f.text_field :unit, class: 'nested_unit'
 
   = link_to_remove_association "Remove", f

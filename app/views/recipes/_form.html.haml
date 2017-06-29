@@ -8,10 +8,10 @@
         .form.instructions
           = f.label :instructions
           = f.text_area :instructions, rows: "4"
-          .form.ingredients#recipe-ingredients
+        .form.ingredients#recipe-ingredients
           = f.fields_for :quantities do |quantity|
             = render 'quantity_fields', f: quantity
           = link_to_add_association 'add ingredient', f, :quantities, 'data-association-insertion-node' => '#recipe-ingredients', 'data-association-insertion-method' => 'append', :wrap_object => Proc.new { |quantity| quantity.build_ingredient; quantity }
-          .formcolumn
-            %br
-            = f.submit
+        .formcolumn
+          %br
+          = f.submit
