@@ -4,13 +4,9 @@ feature 'Recipes' do
 
   before(:each) do
     login_as(user, scope: :user)
-    # visit new_user_session_path
-    # fill_in "user_email", with: user.email
-    # fill_in "user_password", with: user.password
-    # click_button 'Log in'
   end
 
-  xscenario 'adding recipes', js:true do
+  scenario 'adding recipes', js:true do
     visit '/'
     click_link 'Add recipe'
     fill_in 'Title', with: "#{saved_recipe.title} 2"
@@ -29,13 +25,11 @@ feature 'Recipes' do
     expect(current_path).to eq '/recipes'
   end
 
-  xscenario 'editing a recipe', js:true do
+  scenario 'editing a recipe', js:true do
     visit '/recipes'
-
     click_link 'Edit recipe'
     fill_in('Title', with: "#{saved_recipe.title} edit")
     fill_in 'Instructions', with: "#{saved_recipe.instructions} edit"
-    # save_and_open_page
     find('#recipe-ingredients :nth-child(3) .nested_ingredient').set("#{saved_recipe.ingredients.first.name} edit")
     find('#recipe-ingredients :nth-child(3) .nested_amount').set("#{saved_recipe.quantities.first.amount}2")
     find('#recipe-ingredients :nth-child(3) .nested_unit').set("#{saved_recipe.quantities.first.unit} edit")
@@ -54,10 +48,10 @@ feature 'Recipes' do
     expect(page).not_to have_content(saved_recipe.title.to_s)
   end
 
-  xscenario 'viewing a recipe' do
+  scenario 'viewing a recipe' do
     visit '/recipes'
     click_link saved_recipe.title.to_s
-    expect(page).to have_content "#{saved_recipe.ingredients.first.quantity} #{saved_recipe.ingredients.first.name}"
-    expect(page).to have_content "#{saved_recipe.ingredients.second.quantity} #{saved_recipe.ingredients.second.name}"
+    expect(page).to have_content "#{saved_recipe.quantities.first.amount} #{saved_recipe.quantities.first.unit} #{saved_recipe.ingredients.first.name}"
+    expect(page).to have_content "#{saved_recipe.quantities.second.amount} #{saved_recipe.quantities.second.unit} #{saved_recipe.ingredients.second.name}"
   end
 end
