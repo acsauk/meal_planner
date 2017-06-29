@@ -11,7 +11,7 @@
         .form.ingredients#recipe-ingredients
           = f.fields_for :quantities do |quantity|
             = render 'quantity_fields', f: quantity
-          = link_to_add_association 'add ingredient', f, :quantities, 'data-association-insertion-node' => '#recipe-ingredients', 'data-association-insertion-method' => 'append', :wrap_object => Proc.new { |quantity| quantity.build_ingredient; quantity }
+          = link_to_add_association 'Add ingredient', f, :quantities, 'data-association-insertion-node' => '#recipe-ingredients', 'data-association-insertion-method' => 'append', :wrap_object => Proc.new { |quantity| quantity.build_ingredient; quantity }
         .formcolumn
           %br
           = f.submit
