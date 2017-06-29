@@ -56,6 +56,7 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
+  gem 'launchy'
   gem 'pry'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 3.1'
