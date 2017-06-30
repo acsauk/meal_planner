@@ -7,11 +7,7 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'haml-rails'
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
 gem "cocoon"
-gem "rails_12factor"
-gem "rspec-cells"
 gem "cells-rails"
 gem "cells-haml"
 
@@ -48,16 +44,22 @@ gem 'ransack'
 # gem 'capistrano-rails', group: :development
 
 group :test do
-  gem 'rspec-rails'
   gem 'capybara'
-  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'rspec-cells'
   gem 'rspec-collection_matchers'
+  gem 'rspec-rails'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
+  gem 'launchy'
+  gem 'pry'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do

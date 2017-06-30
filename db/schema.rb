@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505185856) do
+ActiveRecord::Schema.define(version: 20170627111145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
-    t.string   "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,15 +42,17 @@ ActiveRecord::Schema.define(version: 20170505185856) do
 
   add_index "meals", ["user_id"], name: "index_meals_on_user_id", using: :btree
 
-  create_table "recipe_ingredients", force: :cascade do |t|
+  create_table "quantities", force: :cascade do |t|
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "recipe_id"
     t.integer  "ingredient_id"
+    t.integer  "amount"
+    t.string   "unit"
   end
 
-  add_index "recipe_ingredients", ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id", using: :btree
-  add_index "recipe_ingredients", ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id", using: :btree
+  add_index "quantities", ["ingredient_id"], name: "index_quantities_on_ingredient_id", using: :btree
+  add_index "quantities", ["recipe_id"], name: "index_quantities_on_recipe_id", using: :btree
 
   create_table "recipes", force: :cascade do |t|
     t.string   "title"
@@ -119,8 +120,8 @@ ActiveRecord::Schema.define(version: 20170505185856) do
   add_foreign_key "meal_recipes", "meals"
   add_foreign_key "meal_recipes", "recipes"
   add_foreign_key "meals", "users"
-  add_foreign_key "recipe_ingredients", "ingredients"
-  add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "quantities", "ingredients"
+  add_foreign_key "quantities", "recipes"
   add_foreign_key "recipes", "users"
   add_foreign_key "shopping_ingredients", "ingredients"
   add_foreign_key "shopping_ingredients", "shopping_lists"

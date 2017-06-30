@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    2.times { @recipe.ingredients.build }
+    @recipe.ingredients.build
   end
 
   def edit
@@ -44,9 +44,11 @@ class RecipesController < ApplicationController
   end
 
   def recipe_params
-    params.require(:recipe).permit(:title, :instructions,
-                                   ingredients_attributes:
-                                   %i[id recipe_id _destroy
-                                      recipe_ingredients_id name quantity])
+    params.require(:recipe).permit(
+      :title, :instructions,
+      quantities_attributes: [:id, :ingredient, :ingredient_id, :recipe_id, :amount,
+                              :unit, :_destroy,
+                              ingredient_attributes: %i[id _destroy name]]
+    )
   end
 end
