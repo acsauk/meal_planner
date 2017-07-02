@@ -15,7 +15,6 @@ feature 'search' do
   scenario 'by recipe titles' do
     fill_in 'q_title_or_ingredients_name_cont', with: saved_recipe2.title
     click_button 'Search'
-        binding.pry
     expect(page).to have_content(saved_recipe2.title)
     expect(page).not_to have_content(saved_recipe.title)
   end
