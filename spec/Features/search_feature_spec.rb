@@ -3,6 +3,9 @@ feature 'search' do
   let!(:saved_recipe) do
     FactoryGirl.create(:recipe_with_ingredients, user: user)
   end
+  let!(:saved_recipe2) do
+    FactoryGirl.create(:recipe_with_ingredients, user: user, title: 'Pasta', ingredient_name: 'spaghetti')
+  end
 
   before(:each) do
     login_as(user, scope: :user)
@@ -10,7 +13,6 @@ feature 'search' do
   end
 
   scenario 'by recipe titles' do
-    saved_recipe2 = FactoryGirl.create(:recipe_with_ingredients, title: 'Pasta', ingredient_name: 'spaghetti')
     fill_in 'q_title_or_ingredients_name_cont', with: saved_recipe2.title
     click_button 'Search'
         binding.pry
@@ -19,7 +21,6 @@ feature 'search' do
   end
 
   scenario 'by ingredients' do
-    saved_recipe2 = FactoryGirl.create(:recipe_with_ingredients, title: 'Pasta', ingredient_name: 'spaghetti')
     fill_in 'q_title_or_ingredients_name_cont', with: saved_recipe2.ingredients.first.name
     click_button 'Search'
     expect(page).to have_content(saved_recipe2.title)
