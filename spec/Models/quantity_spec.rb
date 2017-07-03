@@ -7,10 +7,13 @@ describe Quantity, type: :model do
     expect(quantity.amount_unit).to be_a Unitwise::Measurement
   end
 
-  it 'amount_unit returns Unitwise::Measurement with initial amount' do
+  it 'amount_unit.value returns amount attribute' do
     quantity = FactoryGirl.build(:quantity)
     expect(quantity.amount_unit.value).to eq quantity.amount
   end
 
-  it
+  it 'amount_unit.unit returns unit attribute' do
+    quantity = FactoryGirl.build(:quantity)
+    expect(quantity.amount_unit.unit.expression).to eq quantity.unit
+  end
 end
