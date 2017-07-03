@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :quantity do
     sequence :amount
-    unit 'grams'
+    unit 'gram'
     association :recipe
     association :ingredient
   end
