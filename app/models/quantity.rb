@@ -8,6 +8,6 @@ class Quantity < ActiveRecord::Base
                                 reject_if: :all_blank
 
   def amount_unit
-    Unitwise(read_attribute(:amount), read_attribute(:unit))
+    Unitwise(amount, unit)
   end
 end
