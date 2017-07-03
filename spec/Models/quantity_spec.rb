@@ -16,7 +16,7 @@ describe Quantity, type: :model do
     expect(quantity.amount_unit.unit.expression).to eq quantity.unit
   end
 
-  it 'amount_unit(unit) assigns correct unit type when provided' do
-    expect(quantity.amount_unit('ml').unit.expression).to eq 'ml'
+  it 'amount_unit(unit) uses correct unit type when provided' do
+    expect(quantity.amount_unit('10.ml').unit.expression).to eq 'ml'
   end
 end
