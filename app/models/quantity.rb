@@ -7,7 +7,7 @@ class Quantity < ActiveRecord::Base
   accepts_nested_attributes_for :ingredient,
                                 reject_if: :all_blank
 
-  def amount
+  def amount_unit
     Unitwise(read_attribute(:amount), read_attribute(:unit))
   end
 end
