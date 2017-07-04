@@ -13,14 +13,14 @@ feature 'Recipes' do
     click_link 'Add recipe'
     fill_in 'Title', with: "#{saved_recipe.title} 2"
     fill_in 'Instructions', with: "#{saved_recipe.instructions} 2"
-    click_link 'add ingredient'
+    click_link 'Add ingredient'
     find('#recipe-ingredients :nth-child(2) .nested_ingredient')
       .set("#{saved_recipe.ingredients.first.name} 2")
     find('#recipe-ingredients :nth-child(2) .nested_amount')
       .set("#{saved_recipe.quantities.first.amount} 2")
     find('#recipe-ingredients :nth-child(2) .nested_unit')
       .set("#{saved_recipe.quantities.first.unit} 2")
-    click_link 'add ingredient'
+    click_link 'Add ingredient'
     find('#recipe-ingredients :nth-child(3) .nested_ingredient')
       .set("#{saved_recipe.ingredients.first.name} 3")
     find('#recipe-ingredients :nth-child(3) .nested_amount')

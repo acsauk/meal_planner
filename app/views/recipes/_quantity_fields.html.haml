@@ -5,9 +5,11 @@
   .row
     .column
       = f.label :amount, "Amount:"
-      = f.text_field :amount, class: 'nested_amount'
+      = f.text_field :amount, class: "nested_amount"
     .column
       = f.label :unit, "Unit:"
-      = f.text_field :unit, class: 'nested_unit'
+      = f.text_field :unit, class: "nested_unit"
 
   = link_to_remove_association "Remove", f
+
+  =console
