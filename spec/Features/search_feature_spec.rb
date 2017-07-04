@@ -9,7 +9,7 @@ feature 'search' do
 
   before(:each) do
     login_as(user, scope: :user)
-    visit '/'
+    visit '/recipes'
   end
 
   scenario 'by recipe titles' do
