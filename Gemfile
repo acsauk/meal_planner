@@ -9,6 +9,7 @@ gem 'cells-rails'
 gem 'cocoon'
 gem 'devise'
 gem 'haml-rails'
+gem 'rails_12factor'
 gem 'ransack'
 gem 'unitwise'
 
