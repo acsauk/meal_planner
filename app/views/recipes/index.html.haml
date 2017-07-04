@@ -2,7 +2,7 @@
   .row
     .column
       - if current_user.recipes.any?
-        - current_user.recipes.each do |recipe|
+        - @recipes.each do |recipe|
           = link_to "#{recipe.title}", recipe_path(recipe), class: "linkrecipe"
           %br
           = link_to 'Edit recipe |', edit_recipe_path(recipe), class: "linkrecipemodify"
@@ -10,3 +10,6 @@
           %p
       - else
         = "You haven't made any recipes! Get started..."
+  .row
+    .column.column
+      = render 'search_form'

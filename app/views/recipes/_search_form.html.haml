@@ -1,7 +1,7 @@
 = search_form_for @q do |f|
   -# Search if the name field contains
 
-  = f.label :title_or_ingredients_name_cont
+  = f.label :title_or_ingredients_name_cont, 'Recipe Title or Ingredient Name Contains'
   = f.search_field :title_or_ingredients_name_cont
 
   = f.submit

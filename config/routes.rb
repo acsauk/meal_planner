@@ -16,12 +16,12 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :planners do
+  resources :planners, :recipes do
     collection do
       get :search
     end
   end
-  resources :recipes
+  # resources :recipes
   resources :meals
 
   # You can have the root of your site routed with "root"

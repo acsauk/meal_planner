@@ -2,7 +2,8 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: %i[edit update destroy show]
 
   def index
-    @recipe = Recipe.all
+    @q = current_user.recipes.ransack(params[:q])
+    @recipes = @q.result(distinct: true)
   end
 
   def new
@@ -35,6 +36,9 @@ class RecipesController < ApplicationController
   end
 
   def show
+  end
+
+  def search
   end
 
   private
