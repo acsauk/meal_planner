@@ -6,11 +6,7 @@
 
 ### Objectives of project
 
-Makers Academy final group project to experience designing and implementing an MVP as part of a group over a 10 day period. The app was inspired by recipe websites and meal planners that allow users to plan out a weeks worth of meals and save recipes to their profiles.
-
-### Wire Frames
-
-Available on on [sketchboard.me](https://sketchboard.me/Tz56SucjbzsU#/)
+Extension of Makers Academy final group project. Originally envisioned as a simple recipe planning app I'm now extending the use case to target small food businesses that need to store recipes, cost up dishes, track inventory and generate shopping lists based on inventory stock.
 
 ### Technologies used
 
