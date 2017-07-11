@@ -15,5 +15,11 @@ FactoryGirl.define do
         end
       end
     end
+
+    factory :ingredient_with_quantity do
+      after(:create) do |ingredient, evaluator|
+        ingredient.quantity << FactoryGirl.create(:quantity_ingredient_association)
+      end
+    end
   end
 end
