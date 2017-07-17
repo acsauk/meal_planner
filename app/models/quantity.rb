@@ -6,7 +6,4 @@ class Quantity < ActiveRecord::Base
   accepts_nested_attributes_for :ingredient,
                                 reject_if: :all_blank
 
-  def amount_unit
-    Unitwise(amount, unit)
-  end
 end
