@@ -2,7 +2,7 @@ require 'rails_helper'
 
 shared_examples_for 'quantifiable' do
   context 'associations' do
-    it { is_expected.to have_many(:quantifiables) }
+    it { is_expected.to have_many(:quantities) }
   end
 
   let(:model) { described_class } # the class that includes the concerns
