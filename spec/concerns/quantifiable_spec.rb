@@ -13,14 +13,14 @@ shared_examples_for 'quantifiable' do
   end
 
   it 'amount_unit is returned as a Unitwise::Measurement object' do
-    expect(quantity.amount_unit).to be_a Unitwise::Measurement
+    expect(model.amount_unit).to be_a Unitwise::Measurement
   end
 
   it 'amount_unit.value returns amount attribute' do
-    expect(quantity.amount_unit.value).to eq quantity.amount
+    expect(model.amount_unit.value).to eq model.amount
   end
 
   it 'amount_unit.unit returns unit attribute' do
-    expect(quantity.amount_unit.unit.expression).to eq quantity.unit
+    expect(model.amount_unit.unit.expression).to eq model.unit
   end
 end
