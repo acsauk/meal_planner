@@ -3,7 +3,7 @@ require 'rails_helper'
 shared_examples_for 'quantifiable' do
   context 'associations' do
     it { is_expected.to have_many(:quantity_joins) }
-    it { is_expected.to have_one(:quantity) }
+    it { is_expected.to have_one(:quantity).through(:quantity_joins) }
   end
 
 # the class that includes the concerns
