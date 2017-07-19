@@ -3,7 +3,7 @@ module Quantifiable
 
   included do
     has_many :quantity_joins, as: :quantifiable, dependent: :destroy
-    has_one :quantity, through: :quantity_joins
+    has_many :quantities, through: :quantity_joins
   end
 
   def amount_unit
